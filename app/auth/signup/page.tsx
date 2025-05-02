@@ -1,0 +1,72 @@
+"use client"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
+const formSchema = z.object({
+    firstName: z.string().min(5).max(50),
+    lastName: z.string().min(5).max(15),
+    email: z.string().email(),
+    password: z.string().min(5).max(15)
+})
+
+export default function Login() {
+    const router = useRouter();
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            firstName: "Joe",
+            lastName: "",
+            email: "",
+            password: "",
+        }
+    });
+
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        router.push("/dashboard");
+        console.log(values)
+    }
+
+    return (
+        <div className="bg-white w-screen h-screen">
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex justify-center flex-col bg-blue-400 w-1/3 h-1/2 items-center">
+                <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>FirstName</FormLabel>
+                            <FormControl>
+                                <Input placeholder="FirstName" {...field} />
+                            </FormControl>
+                            <FormDescription>
+                                This is your public display name.
+                            </FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                        <FormItem >
+                            <FormLabel>LastName</FormLabel>
+                            <FormControl>
+                                <Input placeholder="lastName" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <Button type="submit">Submit</Button>
+            </form>
+        </Form>
+        </div>
+    );
+}
