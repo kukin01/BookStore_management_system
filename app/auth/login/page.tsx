@@ -6,21 +6,19 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDes
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { RegisterFormSchema, } from "@/types/form_schema";
+import { LoginSchema } from "@/types/form_schema";
 
 export default function Login() {
     const router = useRouter();
-    const form = useForm<z.infer<typeof RegisterFormSchema>>({
-        resolver: zodResolver(RegisterFormSchema),
+    const form = useForm<z.infer<typeof LoginSchema>>({
+        resolver: zodResolver(LoginSchema),
         defaultValues: {
-            firstName: "",
-            lastName: "",
             email: "",
             password: "",
         }
     });
 
-    function onSubmit(values: z.infer<typeof RegisterFormSchema>) {
+    function onSubmit(values: z.infer<typeof LoginSchema>) {
         router.push("/dashboard");
         console.log(values)
     }
@@ -28,37 +26,8 @@ export default function Login() {
     return (
         <div className="bg-blue-100 w-screen h-screen flex justify-center items-center">
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex justify-center rounded-3xl text-black flex-col  bg-blue-300 w-1/3 h-5/6 items-center font-black">
-            <h1 className="text-black text-3xl">Register for free</h1>
-                <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                        <FormItem className="w-lg">
-                            <FormLabel>FirstName</FormLabel>
-                            <FormControl>
-                                <Input placeholder="FirstName" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is your public display name.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                        <FormItem className="w-lg">
-                            <FormLabel>LastName</FormLabel>
-                            <FormControl>
-                                <Input placeholder="lastName" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex justify-center rounded-3xl text-black flex-col  bg-blue-300 w-1/3 h-1/2 items-center font-black">
+            <h1 className="text-black text-3xl">Login</h1>
                  <FormField
                     control={form.control}
                     name="email"
@@ -85,7 +54,7 @@ export default function Login() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="font-bold bg-blue-200 w-md">Sign Up</Button>
+                <Button type="submit" className="font-bold bg-blue-200 w-md">Login</Button>
             </form>
         </Form>
         </div>
