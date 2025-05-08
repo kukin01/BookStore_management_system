@@ -3,6 +3,6 @@ import { userSlice } from "./users/userSlice";
 import { BookSlice } from "./books/bookSlice";
 
 export const rootReducer = combineReducers({
-    user: userSlice,
-    book: BookSlice
+    user: userSlice.reducer,
+    book: BookSlice.reducer
 })
