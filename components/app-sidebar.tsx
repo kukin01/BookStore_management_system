@@ -45,15 +45,15 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    <SidebarGroupLabel className="font-bold text-blue-600">Application</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
+                                <SidebarMenuItem key={item.title} className="mt-3.5">
                                     <SidebarMenuButton asChild>
                                         <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
+                                            <item.icon className="text-blue-800" />
+                                            <span className=" text-blue-400 text-lg">{item.title}</span>
                                         </a>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>

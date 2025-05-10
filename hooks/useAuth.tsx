@@ -1,4 +1,4 @@
-import { AuthService } from "../services/authService";
+import { authService } from "../services";
 import { z } from "zod";
 import { LoginSchema, RegisterFormSchema } from "@/types/form_schema";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -23,7 +23,7 @@ const useAuth = () => {
 
     const registerUser = async (data: Omit<z.infer<typeof RegisterFormSchema>, "confirmPassword">) => {
         withLoading(async () => {
-            const response = await AuthService
+            const response = await authService.registerStudent(data);
         })
     }
 }
