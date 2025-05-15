@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Book } from "@/types/book";
+import { slots } from "@/types/slots";
 import { create } from "domain";
 
 
 type InitialState = {
-    data: Book[];
+    data: slots[];
     totalPages: number;
     currentPage: number;
     totalItems: number,
@@ -18,22 +18,22 @@ const initialState: InitialState = {
     totalItems: 0,
     limit: 3,
 }
-export const BookSlice = createSlice({
-    name: "books",
+export const SlotSlice = createSlice({
+    name: "slots",
     initialState,
     reducers: {
-        setBooks: (state, action: PayloadAction<InitialState>) => {
+        setSlots: (state, action: PayloadAction<InitialState>) => {
             return { ...state, ...action.payload }; //replace the entire state with new book list+metadata
         },
-        addBook: (state, action: PayloadAction<Book>) => {
+        addSlot: (state, action: PayloadAction<slots>) => {
             state.data.push(action.payload);
         },
-        removeBook: (state, action: PayloadAction<number>) => {
+        removeSlot: (state, action: PayloadAction<number>) => {
             // state.data = state.data.filter(book => book.id !== action.payload);
             return {...state,...[...state.data].filter}
         }
     }
 })
 
-export const { setBooks, addBook, removeBook } = BookSlice.actions;
-export default BookSlice.reducer;
+export const { setSlots, addSlot, removeSlot } = SlotSlice.actions;
+export default SlotSlice.reducer;

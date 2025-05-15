@@ -23,10 +23,11 @@ export class AuthService {
             firstName,
             lastName,
             email,
-            password
+            password,
+            vehicle_plate_number,
         } = data;
         return await this.instance.post("/signup/", {
-            firstName, lastName, email, password
+            firstName, lastName, email, password,vehicle_plate_number
         })
     }
     loginStudent = async (

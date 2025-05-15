@@ -2,6 +2,7 @@
 
 import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
+import Navbar from "../../components/navbar"
 import {
   Card,
   CardContent,
@@ -34,7 +35,11 @@ const chartConfig = {
 
 export default function Dashboard() {
   return (
-    <div className="w-screen h-full flex justify-center items-center pt-10">
+    <div className="w-screen h-full space-y-12">
+        <div>
+            <Navbar />
+        </div>
+        <div className="flex justify-center">
     <Card className="w-1/2 h-1/2">
       <CardHeader>
         <CardTitle>Bar Chart - Label</CardTitle>
@@ -61,7 +66,7 @@ export default function Dashboard() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8}>
+            <Bar dataKey="SlotsL" fill="var(--color-desktop)" radius={8}>
               <LabelList
                 position="top"
                 offset={12}
@@ -81,6 +86,7 @@ export default function Dashboard() {
         </div>
       </CardFooter>
     </Card>
+    </div>
     </div>
   )
 }

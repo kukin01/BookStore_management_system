@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { userSlice } from "./users/userSlice";
-import { BookSlice } from "./books/bookSlice";
+import { UserSlice } from "./users/userSlice";
+import { SlotSlice } from "./slots/slotSlice";
 
 export const rootReducer = combineReducers({
-    user: userSlice.reducer,
-    book: BookSlice.reducer
+    user: UserSlice.reducer,
+    slot: SlotSlice.reducer
 })
