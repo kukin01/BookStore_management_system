@@ -32,12 +32,16 @@ const RegisterFormSchema = z.object({
         .email({ message: "Invalid email" }),
     password: passwordValidationSchema,
     confirmPassword: passwordValidationSchema,
-    vehicle_plate_number: z
+    // vehicle_plate_number: z
+    //     .string()
+    //     .length(7,{message: "must be exactly 7 characters long"})
+    //     .regex(/^[A-Za-z]{3}\s{4}$/,{
+    //         message: "Invalid plate number"
+    //     })
+    username: z
         .string()
-        .length(7,{message: "must be exactly 7 characters long"})
-        .regex(/^[A-Za-z]{3}\s{4}$/,{
-            message: "Invalid plate number"
-        })
+        .min(3, { message: "Too short" })
+        .max(20, { message: "too long" }),
 })
     .refine((data) => data.password === data.confirmPassword, {
         message: "passwords dont match",

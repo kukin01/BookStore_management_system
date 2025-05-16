@@ -4,7 +4,7 @@ export type User = {
     firstName: string,
     lastName: string;
     password: string;
-    vehicle_plate_number: string
+    username: string
 };
 
 export type BookingRequest = {
@@ -21,8 +21,4 @@ export type newUsers = {
     email: string,
     signedInAt: Date 
 }
-export type ParkingSlot = {
-    id:number,
-    name: string,
-    status: "available" | "booked"
-}
+

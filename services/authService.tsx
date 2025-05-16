@@ -4,7 +4,7 @@
 //use zod, store the access token in cookies and send it with future requests.
 
 import axios, { AxiosInstance } from "axios";
-import { LoginSchema, RegisterFormSchema } from "@/types/form_schema";
+import { LoginSchema, RegisterFormSchema } from "../types/form_schema";
 import { z } from "zod";
 
 export class AuthService {
@@ -20,14 +20,14 @@ export class AuthService {
         data: Omit<z.infer<typeof RegisterFormSchema>, "confirmPassword">,
     ) => {
         const {
+            username,
             firstName,
             lastName,
             email,
             password,
-            vehicle_plate_number,
         } = data;
-        return await this.instance.post("/signup/", {
-            firstName, lastName, email, password,vehicle_plate_number
+        return await this.instance.post("/signup", {
+            firstName, lastName, email, password,username
         })
     }
     loginStudent = async (

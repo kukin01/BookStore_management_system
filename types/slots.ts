@@ -3,10 +3,10 @@
 export type slots = {
     id:number,
     slot_number: number,
-    is_Booked: boolean,
+    is_Booked: "available" | "booked",
     vehicle_plate_number: string,
     user_id: number,
     is_approved:boolean,
     slot_type: string,
-    price_per_hour: number
+    price_per_hour: number,
 }

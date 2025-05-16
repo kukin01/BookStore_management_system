@@ -8,7 +8,7 @@ const initialState: User = {
     firstName: "",
     lastName: "",
     password: "",
-    vehicle_plate_number:""
+    username:""
 }
 export const UserSlice = createSlice({
     name: "user",
@@ -23,15 +23,15 @@ export const UserSlice = createSlice({
             state.firstName = payload.firstName;
             state.lastName = payload.lastName;
             state.password = payload.password;
-            state.vehicle_plate_number = payload.vehicle_plate_number
+            state.username = payload.username
         },
         logoutUser: (state,_action: PayloadAction<User>)=>{
             state.id = undefined,
             state.email = "",
+            state.username = "",
             state.firstName = "",
             state.lastName = "",
             state.password = "";
-            state.vehicle_plate_number=""
         }
     }
 })
