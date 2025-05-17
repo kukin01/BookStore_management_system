@@ -25,7 +25,7 @@ export default function Login() {
     }
 
     return (
-        <div className="bg-white w-screen h-screen flex justify-center items-center">
+        <div className="bg-white w-screen h-auto mt-8 flex justify-center items-center">
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex justify-center rounded-3xl text-black flex-col  bg-white border-2 border-blue-500 w-1/3 h-1/2 items-center font-black">
             <h1 className="text-black text-3xl">Login</h1>

@@ -15,7 +15,17 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const makeStore = () => {
   const store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      serializableCheck:{
+        ignoredActions: [ "persist/PERSIST",
+            "persist/REHYDRATE",
+            "persist/PAUSE",
+            "persist/FLUSH",
+            "persist/PURGE",
+            "persist/REGISTER",],
+      }
+    })
+
   })
   const persistor = persistStore(store);
   return {store, persistor};

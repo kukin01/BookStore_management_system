@@ -30,6 +30,11 @@ export class AuthService {
             firstName, lastName, email, password,username
         })
     }
+    logoutMUser(dispatch: any, navigate: (path: string) => void) {
+        dispatch({ type: "user/logout" }); // Or import your logout action
+        localStorage.removeItem("token");
+        navigate("/login");
+    }
     loginStudent = async (
         data: z.infer<typeof LoginSchema>
     ) => {

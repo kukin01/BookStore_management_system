@@ -58,4 +58,23 @@ const LoginSchema = z
             .min(2, { message: "Too short" })
     })
 
-export { passwordValidationSchema, RegisterFormSchema, LoginSchema }
+const SlotsFormSchema = z.object({
+    slot_number: z
+        .string()
+        .min(3, { message: "Book name can't go below 3 characters" })
+        .max(100, { message: "Book name can't exceed 100 characters" }),
+    is_Booked: z
+        .enum(["AVAILABLE", "BOOKED"]),
+    is_approved: z
+        .enum(["APPROVED", "FALSE", "TRUE", "ONMARKET"]),
+    slot_type: z
+        .enum(["STANDARD", "VIP", "VVIP"]),
+        // .default("STANDARD"),
+        // .catch("STANDARD"),
+    price_per_hour: z
+        .number()
+        .min(3, "price can't go below 3 characters"),
+    size: z.enum(["MEDIUM", "LARGE", "SMALL"]),
+    vehicle_type: z.enum(["MOTORCYCLE", "CAR", "TRUCK"]),
+});
+export { passwordValidationSchema, RegisterFormSchema, LoginSchema, SlotsFormSchema }

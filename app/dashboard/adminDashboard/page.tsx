@@ -4,6 +4,8 @@ import { newUsers, BookingRequest } from "@/types/user"
 import { slots } from "@/types/slots"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHeader, TableRow, TableHead } from "@/components/ui/table"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function AdminDashboard() {
     const [slots, setSlots] = useState<slots[]>([])
@@ -53,7 +55,7 @@ export default function AdminDashboard() {
                     </CardHeader>
                     <CardContent>
                         <p className="text-2xl font-bold">
-                            {slots.filter(s => s.is_Booked === "available").length} / {slots.length}
+                            {slots.filter(s => s.is_Booked === "AVAILABLE").length} / {slots.length}
                         </p>
                     </CardContent>
                 </Card>
@@ -138,6 +140,10 @@ export default function AdminDashboard() {
                                 <TableHead>is_approved</TableHead>
                                 <TableHead>slot_type</TableHead>
                                 <TableHead>price_per_hour</TableHead>
+                                <TableHead>size</TableHead>
+                                <TableHead>vehicle_type</TableHead>
+                                <TableHead>Update</TableHead>
+                                <TableHead>Delete</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -145,11 +151,13 @@ export default function AdminDashboard() {
                                 <TableRow key={slots.id}>
                                     <TableCell>{slots.slot_number}</TableCell>
                                     <TableCell>{slots.is_Booked}</TableCell>
-                                    <TableCell>{slots.vehicle_plate_number}</TableCell>
-                                    <TableCell>{slots.user_id}</TableCell>
                                     <TableCell>{slots.is_approved}</TableCell>
                                     <TableCell>{slots.slot_type}</TableCell>
                                     <TableCell>{slots.price_per_hour}</TableCell>
+                                    <TableCell>{slots.size}</TableCell>
+                                    <TableCell>{slots.vehicle_type}</TableCell>
+                                    <TableCell><Button><Link href="/update/id" ><span>Update</span></Link></Button></TableCell>
+                                    <TableCell><Button><Link href="/delete/id" ><span>Delete</span></Link></Button></TableCell>
                                     {/* <TableCell>
                                         {new Date(user.signedInAt).toLocaleString()}
                                     </TableCell> */}
